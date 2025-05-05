@@ -22,10 +22,11 @@ INSERT INTO users(username, email_address, password) VALUES ('admin', 'admin@exa
 -- - County of Residence
 
 CREATE TABLE IF NOT EXISTS contacts (
+    id INT AUTO_INCREMENT KEY,
     first_name VARCHAR(100), 
     last_name VARCHAR(100),
     phone_number VARCHAR(20),
-    email_address VARCHAR(100),
+    email_address VARCHAR(100) UNIQUE NOT NULL,
     id_number INT(15),
     date_of_birth DATE,
     gender ENUM('Male', 'Female', 'Other'),
