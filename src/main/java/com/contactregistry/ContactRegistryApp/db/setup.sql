@@ -1,6 +1,9 @@
 CREATE DATABASE IF NOT EXISTS contact_registry;
 USE contact_registry;
 
+-- username
+-- email_address
+-- password
 CREATE TABLE users(
     username VARCHAR(100) UNIQUE NOT NULL,
     email_address VARCHAR(255) UNIQUE NOT NULL,
