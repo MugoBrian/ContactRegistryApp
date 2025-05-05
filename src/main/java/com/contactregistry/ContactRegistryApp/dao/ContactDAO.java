@@ -22,7 +22,7 @@ public class ContactDAO {
 
     private Connection conn;
 
-    private ContactDAO(Connection conn) {
+    public ContactDAO(Connection conn) {
         this.conn = conn;
     }
 
@@ -55,7 +55,7 @@ public class ContactDAO {
                 contact.setFirstName(rs.getString("first_name"));
                 contact.setLastName(rs.getString("last_name"));
                 contact.setPhoneNumber(rs.getString("phone_number"));
-                contact.setEmailAddress(rs.getString("email"));
+                contact.setEmailAddress(rs.getString("email_address"));
                 contact.setIdNumber(rs.getInt("id_number"));
                 contact.setDateOfBirth(rs.getDate("date_of_birth").toLocalDate());
                 contact.setGender(rs.getString("gender"));
@@ -80,10 +80,10 @@ public class ContactDAO {
                 contact.setId(rs.getInt("id"));
                 contact.setFirstName(rs.getString("first_name"));
                 contact.setLastName(rs.getString("last_name"));
-                contact.setPhoneNumber(rs.getString("phone"));
-                contact.setEmailAddress(rs.getString("email"));
+                contact.setPhoneNumber(rs.getString("phone_number"));
+                contact.setEmailAddress(rs.getString("email_address"));
                 contact.setIdNumber(rs.getInt("id_number"));
-                contact.setDateOfBirth(rs.getDate("dob").toLocalDate());
+                contact.setDateOfBirth(rs.getDate("date_of_birth").toLocalDate());
                 contact.setGender(rs.getString("gender"));
                 contact.setCounty(rs.getString("county"));
 
@@ -94,7 +94,7 @@ public class ContactDAO {
     }
 
     public void updateContact(Contact contact) throws SQLException {
-        String sql = "UPDATE contacts SET full_name = ?, phone = ?, email = ?, id_number = ?, dob = ?, gender = ?, county = ? WHERE id = ?";
+        String sql = "UPDATE contacts SET full_name = ?, phone = ?, email_address = ?, id_number = ?, dob = ?, gender = ?, county = ? WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
             statement.setString(1, contact.getFirstName());
@@ -129,10 +129,10 @@ public class ContactDAO {
                 contact.setId(rs.getInt("id"));
                 contact.setFirstName(rs.getString("first_name"));
                 contact.setLastName(rs.getString("last_name"));
-                contact.setPhoneNumber(rs.getString("phone"));
-                contact.setEmailAddress(rs.getString("email"));
+                contact.setPhoneNumber(rs.getString("phone_number"));
+                contact.setEmailAddress(rs.getString("email_address"));
                 contact.setIdNumber(rs.getInt("id_number"));
-                contact.setDateOfBirth(rs.getDate("dob").toLocalDate());
+                contact.setDateOfBirth(rs.getDate("date_of_birth").toLocalDate());
                 contact.setGender(rs.getString("gender"));
                 contact.setCounty(rs.getString("county"));
 

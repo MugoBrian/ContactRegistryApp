@@ -15,10 +15,10 @@ public class UserDAO {
         this.conn = conn;
     }
 
-    public User validate(String email, String password) throws SQLException {
-        String sql = "SELECT * FROM user WHERE email = ? AND password = MD5(?)";
+    public User validate(String email_address, String password) throws SQLException {
+        String sql = "SELECT * FROM user WHERE email_address = ? AND password = MD5(?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setString(1, email);
+            statement.setString(1, email_address);
             statement.setString(2, password);
 
             ResultSet rs = statement.executeQuery();
