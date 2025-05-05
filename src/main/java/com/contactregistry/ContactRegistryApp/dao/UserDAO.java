@@ -16,7 +16,7 @@ public class UserDAO {
     }
 
     public User validate(String email_address, String password) throws SQLException {
-        String sql = "SELECT * FROM user WHERE email_address = ? AND password = MD5(?)";
+        String sql = "SELECT * FROM users WHERE email_address = ? AND password = MD5(?)";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, email_address);
             statement.setString(2, password);
@@ -25,11 +25,8 @@ public class UserDAO {
 
             if (rs.next()) {
                 return new User(
-                        rs.getInt("id"),
-                        rs.getString("email_address"),
-                        null,
-                        rs.getString("first_name"),
-                        null);
+                        rs.getString("username"),
+                        rs.getString("email_address"));
             }
         }
         return null;
