@@ -14,10 +14,9 @@ nav {
   background-color: #0a2c25;
 }
 
-
 .text {
-    color: #2d5a51;
-  }
+  color: #2d5a51;
+}
 
 .hero-section {
   background-color: #f0f2f5;
@@ -27,16 +26,18 @@ nav {
 }
 
 .bg-primary-bg {
-  color: #0a2c25;
+  background-color: #0a2c25;
 }
 
 .btn-primary-bg {
   background-color: #0a2c25;
   border-color: #0a2c25;
+  color: #f0f2f5;
 }
 
-.btn-primary:hover {
-  background-color: #0a2c25;
+.btn-primary-bg:hover {
+  background-color: #f0f2f5;
+  color: #0a2c25;
 }
 
 .dashboard-container {
@@ -61,10 +62,10 @@ footer {
 }
 
 @media print {
-    .no-print {
-        display: none;
-    }
-    body {
-        margin: 0;
-    }
+  .no-print {
+    display: none;
+  }
+  body {
+    margin: 0;
+  }
 }
