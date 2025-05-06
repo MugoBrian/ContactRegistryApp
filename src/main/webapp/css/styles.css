@@ -14,11 +14,8 @@ nav {
   background-color: #0a2c25;
 }
 
-.text-primary {
-  color: #0a2c25;
-}
 
-.text-primary {
+.text {
     color: #2d5a51;
   }
 
@@ -29,11 +26,11 @@ nav {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-.bg-primary {
+.bg-primary-bg {
   color: #0a2c25;
 }
 
-.btn-primary {
+.btn-primary-bg {
   background-color: #0a2c25;
   border-color: #0a2c25;
 }
@@ -61,4 +58,13 @@ nav {
 
 footer {
   font-size: 0.875rem;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+    body {
+        margin: 0;
+    }
 }
