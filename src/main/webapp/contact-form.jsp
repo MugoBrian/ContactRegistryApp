@@ -65,13 +65,9 @@
             <label class="form-label">County</label>
             <input type="text" name="county" class="form-control" value="<%= contact != null ? contact.getCounty() : "" %>" required>
         </div>
-        <div class="row mb-4 g-4">
-            <div class="col-md-4 ">
-                <button type="submit" class="btn btn-lg btn-primary-bg"><%= contact != null ? "Update" : "Save" %></button>
-            </div>
-            <div class="col-md-4">
-                <a href="contacts" class="btn btn-lg btn-secondary">Cancel</a>
-            </div>
+        <div class="col-md-4 mb-4">
+            <button type="submit" class="btn btn-primary-bg"><%= contact != null ? "Update" : "Save" %></button>
+            <a href="contacts" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
