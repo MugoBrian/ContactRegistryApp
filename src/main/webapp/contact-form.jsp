@@ -12,9 +12,9 @@
 <jsp:include page="navbar.jsp" />
 <div class="container mt-4">
     <h2>${contact != null ? "Edit Contact" : "Add New Contact"}</h2>
-    <form action="${contact != null ? 'contacts?update&id=' + contact.contact_id : 'contacts'}" method="${contact != null ? 'put' : 'post'}" class="row g-3">
+    <form action="${contact != null ? 'contacts?update&id=' + contact.id : 'contacts'}" method="${contact != null ? 'put' : 'post'}" class="row g-3">
         <c:if test="${contact != null}">
-            <input type="hidden" name="contact_id" value="${contact.contact_id}">
+            <input type="hidden" name="contact_id" value="${contact.id}">
         </c:if>
         <div class="row">
             <div class="col-md-6 col-lg-6">

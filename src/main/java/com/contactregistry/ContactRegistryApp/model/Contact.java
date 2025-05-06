@@ -119,8 +119,9 @@ public class Contact {
     @Override
     public String toString() {
         return "{" +
-                " id='" + getId() + "'" +
-                ", full_name='" + getFullName() + "'" +
+                " contact_id='" + getId() + "'" +
+                ", first_name='" + getFirstName() + "'" +
+                ", last_name='" + getLastName() + "'" +
                 ", phone_number='" + getPhoneNumber() + "'" +
                 ", email_address='" + getEmailAddress() + "'" +
                 ", id_number='" + getIdNumber() + "'" +

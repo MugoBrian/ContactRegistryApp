@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.*, model.Contact" %>
+<%@ page import="java.util.*, com.contactregistry.ContactRegistryApp.model.Contact" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,7 @@
 
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="text-primary">Contact List</h2>
+        <h2 class="text-primary-bg">Contact List</h2>
         <a href="contacts?action=new" class="btn btn-success">+ Add New Contact</a>
     </div>
 
@@ -27,7 +27,7 @@
 
     <div class="table-responsive shadow rounded bg-white p-3">
         <table class="table table-hover align-middle mb-0">
-            <thead class="table-primary">
+            <thead class="bg-primary-bg">
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -44,20 +44,20 @@
                 <%
                     List<Contact> contactList = (List<Contact>) request.getAttribute("contactList");
                     if (contactList != null) {
-                        for (Contact c : contactList) {
+                        for (Contact contact : contactList) {
                 %>
                 <tr>
-                    <td><%= c.getFirstName() %></td>
-                    <td><%= c.getLastName() %></td>
-                    <td><%= c.getPhoneNumber() %></td>
-                    <td><%= c.getEmailAddress() %></td>
-                    <td><%= c.getIdNumber() %></td>
-                    <td><%= c.getDateOfBirth() %></td>
-                    <td><%= c.getGender() %></td>
-                    <td><%= c.getCounty() %></td>
+                    <td><%= contact.getFirstName() %></td>
+                    <td><%= contact.getLastName() %></td>
+                    <td><%= contact.getPhoneNumber() %></td>
+                    <td><%= contact.getEmailAddress() %></td>
+                    <td><%= contact.getIdNumber() %></td>
+                    <td><%= contact.getDateOfBirth() %></td>
+                    <td><%= contact.getGender() %></td>
+                    <td><%= contact.getCounty() %></td>
                     <td class="d-flex gap-2 flex-wrap">
-                        <a href="contacts?action=edit&id=<%= c.getContact_id() %>" class="btn btn-sm btn-outline-primary">Edit</a>
-                        <a href="contacts?action=delete&id=<%= c.getContact_id() %>" 
+                        <a href="contacts?action=edit&id=<%= contact.getId() %>" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="contacts?action=delete&id=<%= contact.getId() %>" 
                            class="btn btn-sm btn-outline-danger"
                            onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
                     </td>

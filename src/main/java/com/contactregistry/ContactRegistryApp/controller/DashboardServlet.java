@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

@@ -37,24 +37,18 @@ public class ContactServlet extends HttpServlet {
         String action = request.getParameter("action");
         try {
             switch (action == null ? "list" : action) {
-                case "new":
-                    showNewForm(request, response);
-                    break;
-                case "edit":
-                    showEditForm(request, response);
-                    break;
-                default:
-                    listContacts(request, response);
-                    break;
+                case "new" -> showNewForm(request, response);
+                case "edit" -> showEditForm(request, response);
+                default -> listContacts(request, response);
             }
-        } catch (Exception ex) {
+        } catch (ServletException | IOException | SQLException ex) {
             throw new ServletException(ex);
         }
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("contact-form.jsp").forward(request, response);
+        request.getRequestDispatcher("contacts?action=new").forward(request, response);
     }
 
     private void listContacts(HttpServletRequest request, HttpServletResponse response)
@@ -78,7 +72,6 @@ public class ContactServlet extends HttpServlet {
         try {
             contactDAO.addContact(contact);
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         resp.sendRedirect("contacts");
     }
@@ -87,7 +80,7 @@ public class ContactServlet extends HttpServlet {
         Contact contact = new Contact();
         contact.setFirstName(request.getParameter("first_name"));
         contact.setLastName(request.getParameter("last_name"));
-        contact.setPhoneNumber(request.getParameter("phoneNumber"));
+        contact.setPhoneNumber(request.getParameter("phone_number"));
         contact.setEmailAddress(request.getParameter("email_address"));
         contact.setIdNumber(Integer.parseInt(request.getParameter("id_number")));
         contact.setDateOfBirth((LocalDate.parse(request.getParameter("date_of_birth"))));
@@ -111,7 +104,7 @@ public class ContactServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Contact contact = extractContactFromRequest(req);
-        contact.setId(Long.parseLong(req.getParameter("id")));
+        contact.setId(Integer.parseInt(req.getParameter("contact_id")));
         try {
             contactDAO.updateContact(contact);
         } catch (SQLException e) {

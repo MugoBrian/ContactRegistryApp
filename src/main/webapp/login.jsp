@@ -33,7 +33,7 @@
                 <div class="alert alert-danger">${error}</div>
 
                <% } %>
-               <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+               <button type="submit" class="btn btn-primary-bg w-100 mt-3">Login</button>
                         </form>
                     </div>
                 </div>

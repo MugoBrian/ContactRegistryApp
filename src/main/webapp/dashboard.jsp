@@ -27,20 +27,20 @@
         function drawGenderChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Gender', 'Count'],
-                <% 
-                    
 
+                <% 
                 Map<String, Integer> genderStats = (Map<String, Integer>) request.getAttribute("genderStats");
-                    out.println(genderStats);
 
                 if (genderStats != null) {
                     for (Map.Entry<String, Integer> entry : genderStats.entrySet()) {
-                        out.print("['" + entry.getKey() + "', " + entry.getValue() + "],");
-                    }
-                } else {
-                    out.print("['No Data', 0],");
-                }
                 %>
+                        ['<%= entry.getKey() %>', <%= entry.getValue() %>],
+                <%
+                    }
+                } else { %>
+                    ['No Data', 0],
+
+                <% } %>
             ]);
 
             var options = {
@@ -54,17 +54,21 @@
         function drawCountyChart() {
             var data = google.visualization.arrayToDataTable([
                 ['County', 'Count'],
+
                 <% 
                 Map<String, Integer> countyStats = (Map<String, Integer>) request.getAttribute("countyStats");
+
                 if(countyStats != null){
                     for (Map.Entry<String, Integer> entry : countyStats.entrySet()) {
-                        out.print("['" + entry.getKey() + "', " + entry.getValue() + "],");
-                    }
-                } else {
-                    out.print("['No Data', 0],");
-                }
-                
                 %>
+                    ['<%= entry.getKey() %>', <%= entry.getValue() %>],
+                <%
+                    }
+                } else { %>
+                    ['No Data', 0],
+
+                <% } %>
+                
             ]);
 
             var options = {
@@ -107,11 +111,11 @@
 
         <!-- Recent Contacts Table -->
         <div class="card shadow-sm mt-5">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-primary-bg text-white">
                 Recently Added Contacts
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table-responsive shadow rounded table-hover">
                     <thead class="table-light">
                         <tr>
                             <th>First Name</th>

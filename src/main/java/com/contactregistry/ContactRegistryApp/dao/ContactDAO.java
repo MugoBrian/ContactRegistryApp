@@ -10,7 +10,8 @@ import java.sql.Date;
 
 import com.contactregistry.ContactRegistryApp.model.Contact;
 
-// full_name  
+// first_name
+// last_name
 // phone_number 
 // email_address
 // id_number 
@@ -27,7 +28,7 @@ public class ContactDAO {
     }
 
     public void addContact(Contact contact) throws SQLException {
-        String sql = "INSERT INTO contacts(first_name, last_name, phone_number, email_address, id_number, date_of_birth, gender, county) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO contacts(first_name, last_name, phone_number, email_address, id_number, date_of_birth, gender, county) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, contact.getFirstName());
@@ -51,7 +52,7 @@ public class ContactDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Contact contact = new Contact();
-                contact.setId(rs.getInt(("id")));
+                contact.setId(rs.getInt("contact_id"));
                 contact.setFirstName(rs.getString("first_name"));
                 contact.setLastName(rs.getString("last_name"));
                 contact.setPhoneNumber(rs.getString("phone_number"));
@@ -63,21 +64,22 @@ public class ContactDAO {
 
                 contacts.add(contact);
 
+                System.out.println("This is contact " + contact);
             }
+
         }
         return contacts;
 
     }
 
     public Contact getContactById(int id) throws SQLException {
-        String sql = "SELECT * FROM contacts WHERE id = ?";
+        String sql = "SELECT * FROM contacts WHERE contact_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 Contact contact = new Contact();
-
-                contact.setId(rs.getInt("id"));
+                contact.setId(rs.getInt("contact_id"));
                 contact.setFirstName(rs.getString("first_name"));
                 contact.setLastName(rs.getString("last_name"));
                 contact.setPhoneNumber(rs.getString("phone_number"));
@@ -94,7 +96,7 @@ public class ContactDAO {
     }
 
     public void updateContact(Contact contact) throws SQLException {
-        String sql = "UPDATE contacts SET full_name = ?, phone = ?, email_address = ?, id_number = ?, dob = ?, gender = ?, county = ? WHERE id = ?";
+        String sql = "UPDATE contacts SET first_name = ?, last_name = ? phone_number = ?, email_address = ?, id_number = ?, date_of_birth = ?, gender = ?, county = ? WHERE contact_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
             statement.setString(1, contact.getFirstName());
@@ -111,7 +113,7 @@ public class ContactDAO {
     }
 
     public void deleteContact(int id) throws SQLException {
-        String sql = "DELETE FROM contacts WHERE id = ?";
+        String sql = "DELETE FROM contacts WHERE contact_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -126,7 +128,7 @@ public class ContactDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Contact contact = new Contact();
-                contact.setId(rs.getInt("id"));
+                contact.setId(rs.getInt("contact_id"));
                 contact.setFirstName(rs.getString("first_name"));
                 contact.setLastName(rs.getString("last_name"));
                 contact.setPhoneNumber(rs.getString("phone_number"));
