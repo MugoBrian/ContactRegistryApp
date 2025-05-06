@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="col-md-2 d-grid">
-                    <button type="submit" class="btn btn-success">Generate Report</button>
+                    <button type="submit" class="btn btn-primary-bg">Generate Report</button>
                 </div>
 
                 <div class="col-md-2 d-grid">

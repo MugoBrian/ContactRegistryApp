@@ -18,8 +18,8 @@
                     <a href="login" class="btn btn-primary-bg text-white btn-lg mt-4 px-5">Login</a>
                 </div>
                 <footer class="text-muted mt-5">
-                    &copy; 2025 Contact Registry App. All rights reserved.
-          reserved      </footer>
+                    &copy; 2025 Contact Registry App. All rights reserved
+                </footer>
             </div>
         </div>
     </div>
