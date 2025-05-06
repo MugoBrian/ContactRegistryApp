@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS contacts (
     last_name VARCHAR(100),
     phone_number VARCHAR(20),
     email_address VARCHAR(100) UNIQUE NOT NULL,
-    id_number INT(15),
+    id_number INT(15) UNIQUE,
     date_of_birth DATE,
     gender ENUM('Male', 'Female', 'Other'),
     county VARCHAR(100),

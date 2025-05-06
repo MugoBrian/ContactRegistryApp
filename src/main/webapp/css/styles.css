@@ -13,30 +13,37 @@ body {
 nav {
   background-color: #0a2c25;
 }
+a {
+  text-decoration: none;
+}
 
 
 .text {
-    color: #2d5a51;
-  }
+  color: #2d5a51;
+  
+}
 
 .hero-section {
   background-color: #f0f2f5;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 .bg-primary-bg {
-  color: #0a2c25;
+  background-color: #0a2c25;
 }
 
 .btn-primary-bg {
   background-color: #0a2c25;
   border-color: #0a2c25;
+  color: #f0f2f5;
 }
 
-.btn-primary:hover {
-  background-color: #0a2c25;
+.btn-primary-bg:hover {
+  background-color: #2d5a51;
+  color: #f0f2f5;
+  
 }
 
 .dashboard-container {
@@ -45,6 +52,10 @@ nav {
 
 .card {
   border-radius: 0.75rem;
+}
+
+.card-header {
+  background-color: #136958;
 }
 
 .card-title {
@@ -61,10 +72,10 @@ footer {
 }
 
 @media print {
-    .no-print {
-        display: none;
-    }
-    body {
-        margin: 0;
-    }
+  .no-print {
+    display: none;
+  }
+  body {
+    margin: 0;
+  }
 }

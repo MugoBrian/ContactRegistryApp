@@ -15,7 +15,7 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-primary-bg">Contact List</h2>
-        <a href="contacts?action=new" class="btn btn-success">+ Add New Contact</a>
+        <a href="contacts?action=form" class="btn btn-primary-bg">+ Add New Contact</a>
     </div>
 
     <% 
@@ -37,7 +37,7 @@
                     <th>Date Of Birth</th>
                     <th>Gender</th>
                     <th>County</th>
-                    <th>Actions</th>
+                    <th colspan="2">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,10 +56,12 @@
                     <td><%= contact.getGender() %></td>
                     <td><%= contact.getCounty() %></td>
                     <td class="d-flex gap-2 flex-wrap">
-                        <a href="contacts?action=edit&id=<%= contact.getId() %>" class="btn btn-sm btn-outline-primary">Edit</a>
-                        <a href="contacts?action=delete&id=<%= contact.getId() %>" 
-                           class="btn btn-sm btn-outline-danger"
-                           onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
+                        <a href="contacts?action=form&id=<%= contact.getId() %>" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <form action="contacts" method="post">
+                            <input type="hidden" name="_method" value="delete" />
+                            <input type="hidden" name="id" value="<%= contact.getId() %>" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger" >Delete</button>
+                        
                     </td>
                 </tr>
                 <% 

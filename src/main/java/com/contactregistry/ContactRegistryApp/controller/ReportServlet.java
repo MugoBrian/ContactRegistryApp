@@ -63,7 +63,7 @@ public class ReportServlet extends HttpServlet {
 
     private void generatePDF(List<Contact> contacts, HttpServletResponse resp) throws Exception {
         resp.setContentType("application/pdf");
-        resp.setHeader("Content-Disposition", "attachment; filename=contacts.pdf");
+        resp.setHeader("Content-Disposition", "attachment; filename=Contacts Report.pdf");
 
         Document document = new Document();
         PdfWriter.getInstance(document, resp.getOutputStream());

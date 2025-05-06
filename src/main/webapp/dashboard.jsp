@@ -44,7 +44,8 @@
             ]);
 
             var options = {
-                title: 'Contacts by Gender'
+                title: 'Contacts by Gender',
+                colors: ['#136958', '#b5b7b9']
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
@@ -75,7 +76,8 @@
                 title: 'Contacts by County',
                 hAxis: { title: 'County' },
                 vAxis: { title: 'Number of Contacts' },
-                legend: 'none'
+                legend: 'none',
+                colors: ['#136958', '#b5b7b9']
             };
 
             var chart = new google.visualization.ColumnChart(document.getElementById('countyChart'));
@@ -108,14 +110,13 @@
                 </div>
             </div>
         </div>
-
         <!-- Recent Contacts Table -->
         <div class="card shadow-sm mt-5">
-            <div class="card-header bg-primary-bg text-white">
+            <div class="card-header text-white">
                 Recently Added Contacts
             </div>
-            <div class="card-body">
-                <table class="table-responsive shadow rounded table-hover">
+            <div class="card-body table-responsive shadow rounded">
+                <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
                             <th>First Name</th>

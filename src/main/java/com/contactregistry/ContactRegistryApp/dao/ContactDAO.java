@@ -96,7 +96,7 @@ public class ContactDAO {
     }
 
     public void updateContact(Contact contact) throws SQLException {
-        String sql = "UPDATE contacts SET first_name = ?, last_name = ? phone_number = ?, email_address = ?, id_number = ?, date_of_birth = ?, gender = ?, county = ? WHERE contact_id = ?";
+        String sql = "UPDATE contacts SET first_name = ?, last_name = ?, phone_number = ?, email_address = ?, id_number = ?, date_of_birth = ?, gender = ?, county = ? WHERE contact_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
 
             statement.setString(1, contact.getFirstName());
@@ -107,6 +107,8 @@ public class ContactDAO {
             statement.setDate(6, Date.valueOf(contact.getDateOfBirth()));
             statement.setString(7, contact.getGender());
             statement.setString(8, contact.getCounty());
+
+            statement.setInt(9, contact.getId());
 
             statement.executeUpdate();
         }

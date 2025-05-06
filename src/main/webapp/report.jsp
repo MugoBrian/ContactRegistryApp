@@ -15,18 +15,18 @@
     <title>Contact Report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <<link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body class="bg-light">
-
+<jsp:include page="navbar.jsp" />
 <div class="container my-5">
     <div class="card shadow-sm mb-4 no-print">
         <div class="card-body">
             <h3 class="card-title mb-4">Contact Report</h3>
-            <form method="get" action="reports" class="row gy-3 gx-4 align-items-end">
+            <form method="get" action="report" class="row gy-3 gx-4 align-items-end">
                 <div class="col-md-4">
                     <label for="county" class="form-label">Filter by County</label>
-                    <select name="county" id="county" class="form-select">
+                    <select name="county" id="county" class="form-select" >
                         <option value="">-- All Counties --</option>
                         <%
                             List<String> counties = (List<String>) request.getAttribute("counties");
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="col-md-2 d-grid">
-                    <button type="submit" class="btn btn-success">Generate Report</button>
+                    <button type="submit" class="btn btn-primary-bg">Generate Report</button>
                 </div>
 
                 <div class="col-md-2 d-grid">
