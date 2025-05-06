@@ -44,7 +44,8 @@
             ]);
 
             var options = {
-                title: 'Contacts by Gender'
+                title: 'Contacts by Gender',
+                colors: ['#136958']
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
@@ -75,7 +76,8 @@
                 title: 'Contacts by County',
                 hAxis: { title: 'County' },
                 vAxis: { title: 'Number of Contacts' },
-                legend: 'none'
+                legend: 'none',
+                colors: ['#136958']
             };
 
             var chart = new google.visualization.ColumnChart(document.getElementById('countyChart'));
