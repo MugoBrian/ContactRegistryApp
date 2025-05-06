@@ -72,22 +72,23 @@ public class ContactServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("_method");
 
-        switch (method) {
-            case "put":
-                updateContact(req, resp);
-                break;
+        if (method == null) {
 
-            case "delete":
-                deleteContact(req, resp);
+            Contact contact = extractContactFromRequest(req);
+            try {
+                contactDAO.addContact(contact);
+            } catch (SQLException e) {
+                req.setAttribute("errorMessage", e.getMessage());
+                req.setAttribute("contact", contact);
+                req.getRequestDispatcher("contact-form.jsp").forward(req, resp);
+            }
+            resp.sendRedirect("contacts");
+        } else if (method.equals("put")) {
 
-            default:
-                Contact contact = extractContactFromRequest(req);
-                try {
-                    contactDAO.addContact(contact);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                resp.sendRedirect("contacts");
+            updateContact(req, resp);
+        } else {
+
+            deleteContact(req, resp);
         }
 
     }
@@ -113,6 +114,7 @@ public class ContactServlet extends HttpServlet {
             contactDAO.deleteContact(id);
         } catch (SQLException e) {
             e.printStackTrace();
+            req.setAttribute("error", e.getMessage());
         }
         resp.sendRedirect("contacts");
     }
@@ -120,13 +122,18 @@ public class ContactServlet extends HttpServlet {
     protected void updateContact(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Contact contact = extractContactFromRequest(req);
-        contact.setId(Integer.parseInt(req.getParameter("contact_id")));
+        contact.setId(Integer.parseInt(req.getParameter("id")));
+
+        System.out.println(contact);
         try {
             contactDAO.updateContact(contact);
+            resp.sendRedirect("contacts");
         } catch (SQLException e) {
             e.printStackTrace();
+            req.setAttribute("errorMessage", e.getMessage());
+            req.setAttribute("contact", contact);
+            req.getRequestDispatcher("contact-form.jsp").forward(req, resp);
         }
-        resp.sendRedirect("contacts");
     }
 
 }
