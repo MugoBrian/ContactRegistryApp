@@ -37,18 +37,12 @@ public class ContactServlet extends HttpServlet {
         String action = request.getParameter("action");
         try {
             switch (action == null ? "list" : action) {
-                case "new" -> showNewForm(request, response);
-                case "edit" -> showEditForm(request, response);
+                case "form" -> showForm(request, response);
                 default -> listContacts(request, response);
             }
         } catch (ServletException | IOException | SQLException ex) {
             throw new ServletException(ex);
         }
-    }
-
-    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("contacts?action=new").forward(request, response);
     }
 
     private void listContacts(HttpServletRequest request, HttpServletResponse response)
@@ -58,22 +52,44 @@ public class ContactServlet extends HttpServlet {
         request.getRequestDispatcher("contact-list.jsp").forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+    private void showForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Contact existing = contactDAO.getContactById(id);
-        request.setAttribute("contact", existing);
-        request.getRequestDispatcher("contact-form.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        if (id != null) {
+            int contact_id = Integer.parseInt(id);
+            Contact existing = contactDAO.getContactById(contact_id);
+            request.setAttribute("contact", existing);
+            request.getRequestDispatcher("contact-form.jsp").forward(request, response);
+
+        } else {
+
+            request.getRequestDispatcher("contact-form.jsp").forward(request, response);
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Contact contact = extractContactFromRequest(req);
-        try {
-            contactDAO.addContact(contact);
-        } catch (SQLException e) {
+        String method = req.getParameter("_method");
+
+        switch (method) {
+            case "put":
+                updateContact(req, resp);
+                break;
+
+            case "delete":
+                deleteContact(req, resp);
+
+            default:
+                Contact contact = extractContactFromRequest(req);
+                try {
+                    contactDAO.addContact(contact);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                resp.sendRedirect("contacts");
         }
-        resp.sendRedirect("contacts");
+
     }
 
     private Contact extractContactFromRequest(HttpServletRequest request) {
@@ -90,8 +106,8 @@ public class ContactServlet extends HttpServlet {
         return contact;
     }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void deleteContact(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         try {
             contactDAO.deleteContact(id);
@@ -101,8 +117,8 @@ public class ContactServlet extends HttpServlet {
         resp.sendRedirect("contacts");
     }
 
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void updateContact(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         Contact contact = extractContactFromRequest(req);
         contact.setId(Integer.parseInt(req.getParameter("contact_id")));
         try {
