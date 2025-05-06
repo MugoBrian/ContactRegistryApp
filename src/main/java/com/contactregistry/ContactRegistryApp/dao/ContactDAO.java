@@ -108,6 +108,8 @@ public class ContactDAO {
             statement.setString(7, contact.getGender());
             statement.setString(8, contact.getCounty());
 
+            statement.setInt(9, contact.getId());
+
             statement.executeUpdate();
         }
     }
