@@ -37,7 +37,7 @@
                     <th>Date Of Birth</th>
                     <th>Gender</th>
                     <th>County</th>
-                    <th>Actions</th>
+                    <th colspan="2">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,10 +57,10 @@
                     <td><%= contact.getCounty() %></td>
                     <td class="d-flex gap-2 flex-wrap">
                         <a href="contacts?action=form&id=<%= contact.getId() %>" class="btn btn-sm btn-outline-primary">Edit</a>
-                        <form action="contacts?id=<%= contact.getId() %>" method="post">
+                        <form action="contacts" method="post">
                             <input type="hidden" name="_method" value="delete" />
-                        <button type="button" 
-                                class="btn btn-sm btn-outline-danger" >Delete</button>
+                            <input type="hidden" name="id" value="<%= contact.getId() %>" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger" >Delete</button>
                         
                     </td>
                 </tr>
