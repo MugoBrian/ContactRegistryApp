@@ -17,9 +17,10 @@ a {
   text-decoration: none;
 }
 
+
 .text {
   color: #2d5a51;
-
+  
 }
 
 .hero-section {
@@ -51,6 +52,10 @@ a {
 
 .card {
   border-radius: 0.75rem;
+}
+
+.card-header {
+  background-color: #136958;
 }
 
 .card-title {
