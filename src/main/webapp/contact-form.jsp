@@ -16,9 +16,15 @@
 <jsp:include page="navbar.jsp" />
 <div class="container mt-4">
     <h2><%= contact != null ? "Edit Contact" : "Add New Contact" %></h2>
+    <% 
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+        <div class="alert alert-danger mt-4 mb-4"><%= error %></div>
+    <% } %>
     <form action="contacts" method="post" class="row g-3 mt-4">
         <% if (contact != null) { %>
-            <input type="hidden" name="contact_id" value="<%= contact.getId() %>" />
+            <input type="hidden" name="id" value="<%= contact.getId() %>" />
             <input type="hidden" name="_method" value="put" />
         <% } %>
         <div class="row">
